@@ -28,6 +28,7 @@ public class GasTemplate : ModuleRules
 				"Core",
                 "CoreUObject",
                 "Engine",
+                "EnhancedInput",
                 "GameplayTags",
                 "GameplayTasks",
                 "GameplayAbilities",
