@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Character/VirgoCharacterBase.h"
+#include "AbilitySystemInterface.h"
 #include "InputActionValue.h"
 #include "VirgoHeroCharacter.generated.h"
 
@@ -16,12 +17,20 @@ class UDataAsset_InputConfig;
  *
  */
 UCLASS()
-class GASTEMPLATE_API AVirgoHeroCharacter : public AVirgoCharacterBase
+class GASTEMPLATE_API AVirgoHeroCharacter : 
+	public AVirgoCharacterBase,
+	public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
 public:
 	AVirgoHeroCharacter();
+
+	/* IAbilitySystemInterface */
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const;
+	/* IAbilitySystemInterface */
+	
+	virtual void OnRep_PlayerState() override;
 
 protected:
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;

@@ -3,20 +3,22 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
-#include "VirgoCharacterBase.generated.h"
+#include "GameFramework/PlayerState.h"
+#include "VirgoPlayerState.generated.h"
 
 class UVirgoAbilitySystemComponent;
 class UVirgoAttributeSet;
 
+/**
+ * 
+ */
 UCLASS()
-class GASTEMPLATE_API AVirgoCharacterBase : 
-	public ACharacter
+class GASTEMPLATE_API AVirgoPlayerState : public APlayerState
 {
 	GENERATED_BODY()
 
 public:
-	AVirgoCharacterBase();
+	AVirgoPlayerState();
 
 protected:
 #pragma endregion AbilitySystem

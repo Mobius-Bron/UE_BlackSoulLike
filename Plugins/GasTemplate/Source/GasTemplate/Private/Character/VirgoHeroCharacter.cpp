@@ -8,8 +8,11 @@
 #include "EnhancedInputSubsystems.h"
 
 #include "VirgoGameplayTag.h"
+#include "PlayerState/VirgoPlayerState.h"
 #include "DataAssets/Input/DataAsset_InputConfig.h"
 #include "Components/Input/VirgoInputComponent.h"
+#include "AbilitySystem/VirgoAbilitySystemComponent.h"
+#include "AbilitySystem/VirgoAttributeSet.h"
 
 AVirgoHeroCharacter::AVirgoHeroCharacter()
 {
@@ -30,6 +33,22 @@ AVirgoHeroCharacter::AVirgoHeroCharacter()
 	GetCharacterMovement()->bOrientRotationToMovement = false;  // 朝向运动方向
     GetCharacterMovement()->MaxWalkSpeed = 600.f;
 	GetCharacterMovement()->JumpZVelocity = 400.0f;
+}
+
+UAbilitySystemComponent* AVirgoHeroCharacter::GetAbilitySystemComponent() const
+{
+	return GetVirgoAbilitySystemComponent();
+}
+
+void AVirgoHeroCharacter::OnRep_PlayerState()
+{
+	AVirgoPlayerState* VirgoPlayerState = GetPlayerState<AVirgoPlayerState>();
+
+	VirgoAbilitySystemComponent = VirgoPlayerState->GetVirgoAbilitySystemComponent();
+
+	VirgoAttributeSet = VirgoPlayerState->GetVirgoAttributeSet();
+
+	VirgoAbilitySystemComponent->InitAbilityActorInfo(VirgoPlayerState, this);
 }
 
 void AVirgoHeroCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

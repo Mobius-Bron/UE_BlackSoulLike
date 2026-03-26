@@ -3,6 +3,9 @@
 
 #include "Character/VirgoCharacterBase.h"
 
+#include "AbilitySystem/VirgoAbilitySystemComponent.h"
+#include "AbilitySystem/VirgoAttributeSet.h"
+
 AVirgoCharacterBase::AVirgoCharacterBase()
 {
 	PrimaryActorTick.bCanEverTick = false;
