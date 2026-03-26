@@ -2,12 +2,13 @@
 
 
 #include "DataAssets/Input/DataAsset_InputConfig.h"
+#include "GameplayTagContainer.h"
 #include "InputAction.h"
 #include "InputMappingContext.h"
 
-UInputAction* UDataAsset_InputConfig::FindNativeInputActionByTag(const FGameplayTag& InInputTag)
+UInputAction* UDataAsset_InputConfig::FindNativeInputActionByTag(const FGameplayTag& InInputTag) const
 {
-	for (FVirgoInputActionConfig& InputActionConfig : NativeInputAction)
+	for (const FVirgoInputActionConfig& InputActionConfig : NativeInputAction)
 	{
 		if (InputActionConfig.InputTag == InInputTag)
 		{

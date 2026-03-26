@@ -5,6 +5,4 @@
 
 AVirgoController::AVirgoController()
 {
-	PrimaryActorTick.bCanEverTick = false;
-	PrimaryActorTick.bStartWithTickEnabled = false;
 }
