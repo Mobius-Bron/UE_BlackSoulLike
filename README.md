@@ -11,3 +11,13 @@ VirgoCharacterBase
 -VirgoEnemyCharacter
 
 VirgoInputComponent
+
+DataAsset
+-DataAsset_InputConfig
+-DataAsset_StartUpBase
+--DataAsset_HeroStartUp
+--DataAsset_EnemyStartUp
+
+ItemEquipBase
+-WeaponBase
+--HeroWeaponBase

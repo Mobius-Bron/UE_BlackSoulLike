@@ -12,6 +12,7 @@ class USpringArmComponent;
 class UCameraComponent;
 
 class UDataAsset_InputConfig;
+class UDataAsset_HeroStartUpData;
 
 /**
  *
@@ -29,8 +30,8 @@ public:
 	/* IAbilitySystemInterface */
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const;
 	/* IAbilitySystemInterface */
-	
-	virtual void OnRep_PlayerState() override;
+
+	virtual void PossessedBy(AController* NewController) override;
 
 protected:
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
@@ -48,8 +49,11 @@ protected:
 	void Input_Move(const FInputActionValue& InputValue);
 	void Input_Look(const FInputActionValue& InputValue);
 	void Input_Jump(const FInputActionValue& InputValue);
+#pragma endregion
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CharacterData", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UDataAsset_InputConfig> HeroInputConfig;
-#pragma endregion
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CharacterData", meta = (AllowPrivateAccess = "true"))
+	TSoftObjectPtr<UDataAsset_HeroStartUpData> HeroStartUpConfig;
 };

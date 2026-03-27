@@ -20,7 +20,7 @@ void UVirgoGameplayAbility::OnGiveAbility(const FGameplayAbilityActorInfo* Actor
 
 void UVirgoGameplayAbility::EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled)
 {
-	EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
+	Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
 
 	if (AbilityActionPolicy == EVirgoAbilityActionPolicy::OnGiven)
 	{

@@ -9,7 +9,9 @@
 
 #include "VirgoGameplayTag.h"
 #include "PlayerState/VirgoPlayerState.h"
+#include "DataAssets/StartUp/DataAsset_StartUpDataBase.h"
 #include "DataAssets/Input/DataAsset_InputConfig.h"
+#include "DataAssets/StartUp/DataAsset_HeroStartUpData.h"
 #include "Components/Input/VirgoInputComponent.h"
 #include "AbilitySystem/VirgoAbilitySystemComponent.h"
 #include "AbilitySystem/VirgoAttributeSet.h"
@@ -40,15 +42,27 @@ UAbilitySystemComponent* AVirgoHeroCharacter::GetAbilitySystemComponent() const
 	return GetVirgoAbilitySystemComponent();
 }
 
-void AVirgoHeroCharacter::OnRep_PlayerState()
+void AVirgoHeroCharacter::PossessedBy(AController* NewController)
 {
+	Super::PossessedBy(NewController);
+
 	AVirgoPlayerState* VirgoPlayerState = GetPlayerState<AVirgoPlayerState>();
+
+	check(VirgoPlayerState);
 
 	VirgoAbilitySystemComponent = VirgoPlayerState->GetVirgoAbilitySystemComponent();
 
 	VirgoAttributeSet = VirgoPlayerState->GetVirgoAttributeSet();
 
 	VirgoAbilitySystemComponent->InitAbilityActorInfo(VirgoPlayerState, this);
+
+	if (!HeroStartUpConfig.IsNull())
+	{
+		if (UDataAsset_HeroStartUpData* LoadData = HeroStartUpConfig.LoadSynchronous())
+		{
+			LoadData->GiveToAbilitySystemComponent(VirgoAbilitySystemComponent);
+		}
+	}
 }
 
 void AVirgoHeroCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
