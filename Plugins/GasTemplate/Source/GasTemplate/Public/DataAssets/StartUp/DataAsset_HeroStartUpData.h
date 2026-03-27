@@ -4,7 +4,21 @@
 
 #include "CoreMinimal.h"
 #include "DataAssets/StartUp/DataAsset_StartUpDataBase.h"
+#include "GameplayTagContainer.h"
+#include "AbilitySystem/Abilities/VirgoGameplayAbility.h"
 #include "DataAsset_HeroStartUpData.generated.h"
+
+USTRUCT(BlueprintType)
+struct FVirgoHeroAbilitySet
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	FGameplayTag InputTag;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TSubclassOf<UVirgoGameplayAbility> AbilityToGrant;
+};
 
 /**
  * 

@@ -7,6 +7,8 @@
 #include "AbilitySystemInterface.h"
 #include "VirgoEnemyCharacter.generated.h"
 
+class UEnemyCombatComponent;
+
 /**
  * 
  */
@@ -25,4 +27,11 @@ public:
 	/* IAbilitySystemInterface */
 
 	void BeginPlay() override;
+
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Virgo|Combat")
+	UEnemyCombatComponent* EnemyCombatComponent;
+
+public:
+	FORCEINLINE UEnemyCombatComponent* GetEnemyCombatComponent() const { return EnemyCombatComponent; }
 };

@@ -36,3 +36,8 @@ UPawnCombatComponent* UVirgoGameplayAbility::GetPawnCombatComponentFromActorInfo
 {
 	return GetAvatarActorFromActorInfo()->GetComponentByClass<UPawnCombatComponent>();
 }
+
+UVirgoAbilitySystemComponent* UVirgoGameplayAbility::GetVirgoAbilitySystemComponent() const
+{
+	return Cast<UVirgoAbilitySystemComponent>(CurrentActorInfo->AbilitySystemComponent);
+}

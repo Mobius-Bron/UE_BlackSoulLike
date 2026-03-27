@@ -7,6 +7,7 @@
 #include "VirgoGameplayAbility.generated.h"
 
 class UPawnCombatComponent;
+class UVirgoAbilitySystemComponent;
 
 UENUM(BlueprintType)
 enum class EVirgoAbilityActionPolicy : uint8
@@ -29,9 +30,13 @@ protected:
 	virtual void EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled) override;
 	/* GameplayAbility */
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "VirgoAbility")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Virgo|Ability")
 	EVirgoAbilityActionPolicy AbilityActionPolicy = EVirgoAbilityActionPolicy::OnTriggered;
 
+public:
 	UFUNCTION(BlueprintPure, Category = "Virgo|Ability")
 	UPawnCombatComponent* GetPawnCombatComponentFromActorInfo() const;
+
+	UFUNCTION(BlueprintPure, Category = "Virgo|Ability")
+	UVirgoAbilitySystemComponent* GetVirgoAbilitySystemComponent() const;
 };

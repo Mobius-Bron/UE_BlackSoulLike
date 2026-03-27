@@ -5,12 +5,15 @@
 
 #include "AbilitySystem/VirgoAbilitySystemComponent.h"
 #include "AbilitySystem/VirgoAttributeSet.h"
+#include "Components/Combat/EnemyCombatComponent.h"
 
 AVirgoEnemyCharacter::AVirgoEnemyCharacter()
 {
 	VirgoAbilitySystemComponent = CreateDefaultSubobject<UVirgoAbilitySystemComponent>(TEXT("VirgoAbilitySystemComponent"));
 
 	VirgoAttributeSet = CreateDefaultSubobject<UVirgoAttributeSet>(TEXT("VirgoAttributeSet"));
+
+	EnemyCombatComponent = CreateDefaultSubobject<UEnemyCombatComponent>(TEXT("EnemyCombatComponent"));
 }
 
 UAbilitySystemComponent* AVirgoEnemyCharacter::GetAbilitySystemComponent() const
