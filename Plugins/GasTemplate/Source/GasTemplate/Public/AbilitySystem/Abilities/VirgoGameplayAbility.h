@@ -6,6 +6,8 @@
 #include "Abilities/GameplayAbility.h"
 #include "VirgoGameplayAbility.generated.h"
 
+class UPawnCombatComponent;
+
 UENUM(BlueprintType)
 enum class EVirgoAbilityActionPolicy : uint8
 {
@@ -29,4 +31,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "VirgoAbility")
 	EVirgoAbilityActionPolicy AbilityActionPolicy = EVirgoAbilityActionPolicy::OnTriggered;
+
+	UFUNCTION(BlueprintPure, Category = "Virgo|Ability")
+	UPawnCombatComponent* GetPawnCombatComponentFromActorInfo() const;
 };

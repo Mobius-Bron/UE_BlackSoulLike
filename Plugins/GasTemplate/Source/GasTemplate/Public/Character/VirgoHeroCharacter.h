@@ -11,6 +11,8 @@
 class USpringArmComponent;
 class UCameraComponent;
 
+class UHeroCombatComponent;
+
 class UDataAsset_InputConfig;
 class UDataAsset_HeroStartUpData;
 
@@ -51,9 +53,16 @@ protected:
 	void Input_Jump(const FInputActionValue& InputValue);
 #pragma endregion
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat", meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UHeroCombatComponent> HeroCombatComponent;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CharacterData", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UDataAsset_InputConfig> HeroInputConfig;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CharacterData", meta = (AllowPrivateAccess = "true"))
 	TSoftObjectPtr<UDataAsset_HeroStartUpData> HeroStartUpConfig;
+
+public:
+	FORCEINLINE UHeroCombatComponent* GetHeroCombatComponent() const { return HeroCombatComponent; }
+
 };

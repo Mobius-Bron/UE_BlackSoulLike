@@ -13,6 +13,7 @@
 #include "DataAssets/Input/DataAsset_InputConfig.h"
 #include "DataAssets/StartUp/DataAsset_HeroStartUpData.h"
 #include "Components/Input/VirgoInputComponent.h"
+#include "Components/Combat/HeroCombatComponent.h"
 #include "AbilitySystem/VirgoAbilitySystemComponent.h"
 #include "AbilitySystem/VirgoAttributeSet.h"
 
@@ -35,6 +36,8 @@ AVirgoHeroCharacter::AVirgoHeroCharacter()
 	GetCharacterMovement()->bOrientRotationToMovement = false;  // 朝向运动方向
     GetCharacterMovement()->MaxWalkSpeed = 600.f;
 	GetCharacterMovement()->JumpZVelocity = 400.0f;
+
+	HeroCombatComponent = CreateDefaultSubobject<UHeroCombatComponent>(TEXT("HeroCombatComponent"));
 }
 
 UAbilitySystemComponent* AVirgoHeroCharacter::GetAbilitySystemComponent() const

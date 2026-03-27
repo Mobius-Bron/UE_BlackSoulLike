@@ -4,6 +4,7 @@
 #include "AbilitySystem/Abilities/VirgoGameplayAbility.h"
 
 #include "AbilitySystem/VirgoAbilitySystemComponent.h"
+#include "Components/Combat/PawnCombatComponent.h"
 
 void UVirgoGameplayAbility::OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec)
 {
@@ -29,4 +30,9 @@ void UVirgoGameplayAbility::EndAbility(const FGameplayAbilitySpecHandle Handle, 
 			ActorInfo->AbilitySystemComponent->ClearAbility(Handle);
 		}
 	}
+}
+
+UPawnCombatComponent* UVirgoGameplayAbility::GetPawnCombatComponentFromActorInfo() const
+{
+	return GetAvatarActorFromActorInfo()->GetComponentByClass<UPawnCombatComponent>();
 }
