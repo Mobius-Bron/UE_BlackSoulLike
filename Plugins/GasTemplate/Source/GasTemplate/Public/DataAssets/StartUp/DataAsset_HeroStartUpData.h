@@ -18,6 +18,11 @@ struct FVirgoHeroAbilitySet
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TSubclassOf<UVirgoGameplayAbility> AbilityToGrant;
+
+	bool IsValid() const
+	{
+		return InputTag.IsValid() && AbilityToGrant != nullptr;
+	}
 };
 
 /**
@@ -27,5 +32,11 @@ UCLASS()
 class GASTEMPLATE_API UDataAsset_HeroStartUpData : public UDataAsset_StartUpDataBase
 {
 	GENERATED_BODY()
-	
+
+public:
+	virtual void GiveToAbilitySystemComponent(UVirgoAbilitySystemComponent* InVASCToGive, int32 ApplyLevel = 1) override;
+
+private:
+	UPROPERTY(EditAnywhere, Category = "StartUpData", meta = (TitleProperty = "InputTag"))
+	TArray<FVirgoHeroAbilitySet> HeroStartUpAbilitySets;
 };

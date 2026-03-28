@@ -15,4 +15,8 @@ namespace VirgoGameplayTags
 
 	/* Player Tags */
 	GASTEMPLATE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Weapon_Sword);
+
+	GASTEMPLATE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Event_Equip_Sword);
+	GASTEMPLATE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Event_Unequip_Sword);
+	GASTEMPLATE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Event_Attack_Sword);
 }

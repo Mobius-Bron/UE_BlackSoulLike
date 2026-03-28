@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "AbilitySystemComponent.h"
+#include "GameplayTagContainer.h"
 #include "VirgoAbilitySystemComponent.generated.h"
 
 /**
@@ -16,4 +17,7 @@ class GASTEMPLATE_API UVirgoAbilitySystemComponent : public UAbilitySystemCompon
 	
 public:
 	UVirgoAbilitySystemComponent();
+
+	void OnAbilityInputPressed(const FGameplayTag& InputTag);
+	void OnAbilityInputReleased(const FGameplayTag& InputTag);
 };

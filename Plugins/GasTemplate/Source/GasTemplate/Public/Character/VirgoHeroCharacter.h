@@ -6,6 +6,7 @@
 #include "Character/VirgoCharacterBase.h"
 #include "AbilitySystemInterface.h"
 #include "InputActionValue.h"
+#include "GameplayTagContainer.h"
 #include "VirgoHeroCharacter.generated.h"
 
 class USpringArmComponent;
@@ -48,6 +49,9 @@ protected:
 #pragma endregion
 
 #pragma endregion Inputs
+	void Input_AbilityPressed(FGameplayTag InputTag);
+	void Input_AbilityReleased(FGameplayTag InputTag);
+
 	void Input_Move(const FInputActionValue& InputValue);
 	void Input_Look(const FInputActionValue& InputValue);
 	void Input_Jump(const FInputActionValue& InputValue);

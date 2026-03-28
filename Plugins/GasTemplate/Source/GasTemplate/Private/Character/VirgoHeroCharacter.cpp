@@ -86,12 +86,25 @@ void AVirgoHeroCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInput
 	VirgoInputComponent->BindNativeInputAction(HeroInputConfig, VirgoGameplayTags::InputTag_Look, ETriggerEvent::Triggered, this, &ThisClass::Input_Look);
 	VirgoInputComponent->BindNativeInputAction(HeroInputConfig, VirgoGameplayTags::InputTag_Jump, ETriggerEvent::Started, this, &ThisClass::Input_Jump);
 
+	VirgoInputComponent->BindAbilityInputAction(HeroInputConfig, this, &ThisClass::Input_AbilityPressed, &ThisClass::Input_AbilityReleased);
+
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
 void AVirgoHeroCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+void AVirgoHeroCharacter::Input_AbilityPressed(FGameplayTag InputTag)
+{
+	UE_LOG(LogTemp, Display, TEXT("%s Input AbilityPressed"), *InputTag.ToString());
+	VirgoAbilitySystemComponent->OnAbilityInputPressed(InputTag);
+}
+
+void AVirgoHeroCharacter::Input_AbilityReleased(FGameplayTag InputTag)
+{
+	VirgoAbilitySystemComponent->OnAbilityInputReleased(InputTag);
 }
 
 void AVirgoHeroCharacter::Input_Move(const FInputActionValue& InputValue)
