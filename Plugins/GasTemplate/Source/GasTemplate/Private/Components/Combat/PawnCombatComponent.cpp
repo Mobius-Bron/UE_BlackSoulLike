@@ -5,8 +5,16 @@
 
 void UPawnCombatComponent::RegisterSpawnedWeapon(FGameplayTag WeaponTag, AWeaponBase* SpwanWeapon, bool RegisterAsEquippedWeapon)
 {
-	if (WeaponTag.IsValid()) { return; }
-	if (CharacterCarriedWeaponMap.Contains(WeaponTag)) { return; }
+	if (!WeaponTag.IsValid())
+	{
+		UE_LOG(LogTemp, Display, TEXT("Register WeaponTag is nullptr"));
+		return; 
+	}
+	if (CharacterCarriedWeaponMap.Contains(WeaponTag))
+	{
+		UE_LOG(LogTemp, Display, TEXT("Register WeaponTag %s is already register"), *WeaponTag.ToString());
+		return;
+	}
 
 	CharacterCarriedWeaponMap.Emplace(WeaponTag, SpwanWeapon);
 
@@ -33,8 +41,16 @@ void UPawnCombatComponent::UnregisterAndDestoryWeapon(FGameplayTag WeaponTag)
 
 AWeaponBase* UPawnCombatComponent::GetCharacterCarriedWeaponByTag(FGameplayTag WeaponTag) const
 {
-	if (WeaponTag.IsValid()) { return nullptr; }
-	if (!CharacterCarriedWeaponMap.Contains(WeaponTag)) { return nullptr; }
+	if (!WeaponTag.IsValid()) 
+	{
+		UE_LOG(LogTemp, Display, TEXT("Get WeaponTag is nullptr"));
+		return nullptr; 
+	}
+	if (!CharacterCarriedWeaponMap.Contains(WeaponTag)) 
+	{ 
+		UE_LOG(LogTemp, Display, TEXT("Get WeaponTag %s Cant' Found"), *WeaponTag.ToString());
+		return nullptr; 
+	}
 
 	if (AWeaponBase* const* FoundWeapon = CharacterCarriedWeaponMap.Find(WeaponTag))
 	{
