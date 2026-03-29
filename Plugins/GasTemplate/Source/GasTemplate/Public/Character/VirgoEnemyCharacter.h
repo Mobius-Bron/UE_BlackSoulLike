@@ -8,6 +8,7 @@
 #include "VirgoEnemyCharacter.generated.h"
 
 class UEnemyCombatComponent;
+class UDataAsset_EnemyStartUpData;
 
 /**
  * 
@@ -31,6 +32,12 @@ public:
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Virgo|Combat")
 	UEnemyCombatComponent* EnemyCombatComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CharacterData", meta = (AllowPrivateAccess = "true"))
+	TSoftObjectPtr<UDataAsset_EnemyStartUpData> EnemyStartUpConfig;
+
+private:
+	void InitEnemyStartUpData();
 
 public:
 	FORCEINLINE UEnemyCombatComponent* GetEnemyCombatComponent() const { return EnemyCombatComponent; }
