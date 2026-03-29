@@ -27,6 +27,6 @@ public:
 	FVirgoHeroWeaponData WeaponData;
 
 private:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
+	UPROPERTY(EditAnywhere, Category = "Weapon")
 	TArray<FGameplayAbilitySpecHandle> GrantedHeroAbilitySpecHandles;
 };
