@@ -4,26 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "DataAssets/StartUp/DataAsset_StartUpDataBase.h"
-#include "GameplayTagContainer.h"
-#include "AbilitySystem/Abilities/VirgoGameplayAbility.h"
+
+#include "DataTypes/VirgoStructTypes.h"
 #include "DataAsset_HeroStartUpData.generated.h"
 
-USTRUCT(BlueprintType)
-struct FVirgoHeroAbilitySet
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	FGameplayTag InputTag;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TSubclassOf<UVirgoGameplayAbility> AbilityToGrant;
-
-	bool IsValid() const
-	{
-		return InputTag.IsValid() && AbilityToGrant != nullptr;
-	}
-};
 
 /**
  * 

@@ -32,6 +32,6 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Virgo|Combat")
 	FGameplayTag CurrentEquippedWeaponTag;
 
-private:
+protected:
 	TMap<FGameplayTag, AWeaponBase*> CharacterCarriedWeaponMap;
 };
