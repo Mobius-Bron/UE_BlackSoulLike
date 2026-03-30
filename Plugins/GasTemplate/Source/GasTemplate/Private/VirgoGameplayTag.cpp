@@ -23,4 +23,7 @@ namespace VirgoGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_Equip, "Player.Event.Equip");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_Unequip, "Player.Event.Unequip");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_Attack_Sword, "Player.Event.Attack.Sword");
+
+	/* Enemy Tags */
+	UE_DEFINE_GAMEPLAY_TAG(Enemy_Weapon_Sword, "Enemy.Weapon.Sword");
 }
