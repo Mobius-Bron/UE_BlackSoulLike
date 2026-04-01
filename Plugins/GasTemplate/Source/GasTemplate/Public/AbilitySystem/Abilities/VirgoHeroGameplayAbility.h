@@ -28,6 +28,10 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Virgo|Ability")
 	UHeroCombatComponent* GetHeroCombatComponentFromActorInfo();
 
+	// 后续优化掉
+	UFUNCTION(BlueprintPure, Category = "Virgo|Ability")
+	FGameplayEffectSpecHandle MakeHeroDamageEffectSpecHandle(TSubclassOf<UGameplayEffect> EffectClass, float InWeaponBaseDamage);
+
 private:
 	TWeakObjectPtr<AVirgoHeroCharacter> CachedVirgoHeroCharacter;
 	TWeakObjectPtr<AVirgoController> CachedVirgoController;

@@ -17,6 +17,8 @@ namespace VirgoGameplayTags
 	/* Shared Tags */
 	GASTEMPLATE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Shared_Event_MeleeHit);
 
+	GASTEMPLATE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Shared_SetByCaller_BaseDamage);
+
 	/* Player Tags */
 	GASTEMPLATE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Ability_Equip);
 	GASTEMPLATE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Ability_Unequip);
