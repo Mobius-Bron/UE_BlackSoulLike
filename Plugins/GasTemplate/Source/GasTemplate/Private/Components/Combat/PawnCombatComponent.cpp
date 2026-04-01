@@ -2,6 +2,7 @@
 
 
 #include "Components/Combat/PawnCombatComponent.h"
+#include "Components/BoxComponent.h"
 
 void UPawnCombatComponent::RegisterSpawnedWeapon(FGameplayTag WeaponTag, AWeaponBase* SpwanWeapon, bool RegisterAsEquippedWeapon)
 {
@@ -18,6 +19,9 @@ void UPawnCombatComponent::RegisterSpawnedWeapon(FGameplayTag WeaponTag, AWeapon
 
 	CharacterCarriedWeaponMap.Emplace(WeaponTag, SpwanWeapon);
 
+	SpwanWeapon->OnWeaponHitTarget.Unbind();
+	SpwanWeapon->OnWeaponPulledFromTarget.Unbind();
+
 	if (RegisterAsEquippedWeapon)
 	{
 		CurrentEquippedWeaponTag = WeaponTag;
@@ -29,6 +33,9 @@ void UPawnCombatComponent::UnregisterAndDestoryWeapon(FGameplayTag WeaponTag)
 	if (AWeaponBase* WeaponToDestroy = GetCharacterCarriedWeaponByTag(WeaponTag))
 	{
 		CharacterCarriedWeaponMap.Remove(WeaponTag);
+
+		WeaponToDestroy->OnWeaponHitTarget.BindUObject(this, &ThisClass::OnHitTargetActor);
+		WeaponToDestroy->OnWeaponPulledFromTarget.BindUObject(this, &ThisClass::OnPulledFromTargetActor);
 
 		if (CurrentEquippedWeaponTag == WeaponTag)
 		{
@@ -63,4 +70,35 @@ AWeaponBase* UPawnCombatComponent::GetCharacterCarriedWeaponByTag(FGameplayTag W
 AWeaponBase* UPawnCombatComponent::GetCharacterCurrentEquippedWeapon() const
 {
 	return GetCharacterCarriedWeaponByTag(CurrentEquippedWeaponTag);
+}
+
+void UPawnCombatComponent::ToggleWeaponCollision(bool bShouldEnable, EToggleDamageType DamageType)
+{
+	if (DamageType == EToggleDamageType::CurrentEquippedWeapon)
+	{
+		AWeaponBase* WeaponToToggle = GetCharacterCurrentEquippedWeapon();
+
+		if (!WeaponToToggle) { return; }
+
+		if (bShouldEnable)
+		{
+			WeaponToToggle->GetWeaponCollisionBox()->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+			UE_LOG(LogTemp, Display, TEXT("%s Set Collision Enabled: QueryOnly"), *WeaponToToggle->GetName());
+		}
+		else
+		{
+			WeaponToToggle->GetWeaponCollisionBox()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			UE_LOG(LogTemp, Display, TEXT("%s Set Collision Enabled: NoCollision"), *WeaponToToggle->GetName());
+		}
+	}
+}
+
+void UPawnCombatComponent::OnHitTargetActor(AActor* TargetActor)
+{
+
+}
+
+void UPawnCombatComponent::OnPulledFromTargetActor(AActor* TargetActor)
+{
+
 }

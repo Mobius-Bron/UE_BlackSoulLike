@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "Components/PawnExtensionComponentBase.h"
 #include "GameplayTagContainer.h"
+
+#include "DataTypes/VirgoEnumTypes.h"
 #include "Items/Weapons/VirgoHeroWeapon.h"
 #include "PawnCombatComponent.generated.h"
 
@@ -28,6 +30,12 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Virgo|Combat")
 	AWeaponBase* GetCharacterCurrentEquippedWeapon() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Virgo|Combat")
+	void ToggleWeaponCollision(bool bShouldEnable, EToggleDamageType DamageType = EToggleDamageType::CurrentEquippedWeapon);
+
+	virtual void OnHitTargetActor(AActor* TargetActor);
+	virtual void OnPulledFromTargetActor(AActor* TargetActor);
 
 	UPROPERTY(BlueprintReadWrite, Category = "Virgo|Combat")
 	FGameplayTag CurrentEquippedWeaponTag;

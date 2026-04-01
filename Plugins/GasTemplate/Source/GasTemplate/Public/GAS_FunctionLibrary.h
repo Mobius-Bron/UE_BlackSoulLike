@@ -20,6 +20,6 @@ class GASTEMPLATE_API UGAS_FunctionLibrary : public UBlueprintFunctionLibrary
 public:
 	static UPawnCombatComponent* NativeGetCombatComponentFromActor(AActor* InActor);
 
-	UFUNCTION(BlueprintCallable, Category = "Virgo|BlueprintFunctionLibrary", meta = (DisplayName = "Get pawn combat component", ExpandEnumAsExecs = "ValidType"))
+	UFUNCTION(BlueprintCallable, Category = "Virgo|Combat", meta = (DisplayName = "Get pawn combat component", ExpandEnumAsExecs = "ValidType"))
 	static UPawnCombatComponent* BP_GetCombatComponentFromActor(AActor* InActor, EVirgoValidType& ValidType);
 };
