@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
+#include "GameplayEffect.h"
+
 #include "AbilitySystem/VirgoAbilitySystemComponent.h"
 #include "AbilitySystem/Abilities/VirgoGameplayAbility.h"
 #include "DataAsset_StartUpDataBase.generated.h"
@@ -28,6 +30,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "StartUpData")
 	TArray<TSubclassOf<UVirgoGameplayAbility>> ReactiveAbilities;
+
+	UPROPERTY(EditAnywhere, Category = "StartUpData")
+	TArray<TSubclassOf<UGameplayEffect>> StartUpGameplayEffects;
 
 	void GrantAbilities(const TArray<TSubclassOf<UVirgoGameplayAbility>>& AbilitiesToGive, UVirgoAbilitySystemComponent* InVASCToGive, int32 ApplyLevel = 1);
 };

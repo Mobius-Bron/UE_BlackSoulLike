@@ -14,9 +14,7 @@ class UDataAsset_EnemyStartUpData;
  * 
  */
 UCLASS()
-class GASTEMPLATE_API AVirgoEnemyCharacter : 
-	public AVirgoCharacterBase,
-	public IAbilitySystemInterface
+class GASTEMPLATE_API AVirgoEnemyCharacter :  public AVirgoCharacterBase
 {
 	GENERATED_BODY()
 	
@@ -24,8 +22,12 @@ public:
 	AVirgoEnemyCharacter();
 
 	/* IAbilitySystemInterface */
-	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const;
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	/* IAbilitySystemInterface */
+
+	/* IPawnCombatInterface */
+	virtual UPawnCombatComponent* GetCombatComponent() const override;
+	/* IPawnCombatInterface */
 
 	void BeginPlay() override;
 

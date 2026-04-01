@@ -34,6 +34,11 @@ UAbilitySystemComponent* AVirgoEnemyCharacter::GetAbilitySystemComponent() const
 	return GetVirgoAbilitySystemComponent();
 }
 
+UPawnCombatComponent* AVirgoEnemyCharacter::GetCombatComponent() const
+{
+	return GetEnemyCombatComponent();
+}
+
 void AVirgoEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();

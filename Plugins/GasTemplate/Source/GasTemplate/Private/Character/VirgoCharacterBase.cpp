@@ -14,3 +14,13 @@ AVirgoCharacterBase::AVirgoCharacterBase()
 	// 默认不接收和显示贴花
 	GetMesh()->bReceivesDecals = false;
 }
+
+UAbilitySystemComponent* AVirgoCharacterBase::GetAbilitySystemComponent() const
+{
+	return nullptr;
+}
+
+UPawnCombatComponent* AVirgoCharacterBase::GetCombatComponent() const
+{
+	return nullptr;
+}

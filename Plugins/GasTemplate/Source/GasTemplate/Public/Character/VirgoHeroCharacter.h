@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Character/VirgoCharacterBase.h"
-#include "AbilitySystemInterface.h"
 #include "InputActionValue.h"
 #include "GameplayTagContainer.h"
 #include "VirgoHeroCharacter.generated.h"
@@ -21,9 +20,7 @@ class UDataAsset_HeroStartUpData;
  *
  */
 UCLASS()
-class GASTEMPLATE_API AVirgoHeroCharacter : 
-	public AVirgoCharacterBase,
-	public IAbilitySystemInterface
+class GASTEMPLATE_API AVirgoHeroCharacter : public AVirgoCharacterBase
 {
 	GENERATED_BODY()
 
@@ -31,8 +28,12 @@ public:
 	AVirgoHeroCharacter();
 
 	/* IAbilitySystemInterface */
-	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const;
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	/* IAbilitySystemInterface */
+
+	/* IPawnCombatInterface */
+	virtual UPawnCombatComponent* GetCombatComponent() const override;
+	/* IPawnCombatInterface */
 
 	virtual void PossessedBy(AController* NewController) override;
 

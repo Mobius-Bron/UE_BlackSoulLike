@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "AbilitySystemInterface.h"
+#include "Interfaces/PawnCombatInterface.h"
 #include "VirgoCharacterBase.generated.h"
 
 class UVirgoAbilitySystemComponent;
@@ -11,12 +13,22 @@ class UVirgoAttributeSet;
 
 UCLASS()
 class GASTEMPLATE_API AVirgoCharacterBase : 
-	public ACharacter
+	public ACharacter,
+	public IAbilitySystemInterface,
+	public IPawnCombatInterface
 {
 	GENERATED_BODY()
 
 public:
 	AVirgoCharacterBase();
+
+	/* IAbilitySystemInterface */
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	/* IAbilitySystemInterface */
+
+	/* IPawnCombatInterface */
+	virtual UPawnCombatComponent* GetCombatComponent() const override;
+	/* IPawnCombatInterface */
 
 protected:
 #pragma endregion AbilitySystem

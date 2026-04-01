@@ -45,6 +45,11 @@ UAbilitySystemComponent* AVirgoHeroCharacter::GetAbilitySystemComponent() const
 	return GetVirgoAbilitySystemComponent();
 }
 
+UPawnCombatComponent* AVirgoHeroCharacter::GetCombatComponent() const
+{
+	return GetHeroCombatComponent();
+}
+
 void AVirgoHeroCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
