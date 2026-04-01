@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "AttributeSet.h"
+#include "AbilitySystem/VirgoAbilitySystemComponent.h"
 #include "VirgoAttributeSet.generated.h"
 
 #define ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \
@@ -23,5 +24,20 @@ class GASTEMPLATE_API UVirgoAttributeSet : public UAttributeSet
 public:
 	UVirgoAttributeSet();
 
+	UPROPERTY(BlueprintReadOnly, Category = "Attribute|Health")
+	FGameplayAttributeData MaxHealth;
+	ATTRIBUTE_ACCESSORS(UVirgoAttributeSet, MaxHealth);
+
+	UPROPERTY(BlueprintReadOnly, Category = "Attribute|Health")
+	FGameplayAttributeData CurrentHealth;
+	ATTRIBUTE_ACCESSORS(UVirgoAttributeSet, CurrentHealth);
+
+	UPROPERTY(BlueprintReadOnly, Category = "Attribute|Attack")
+	FGameplayAttributeData AttackPower;
+	ATTRIBUTE_ACCESSORS(UVirgoAttributeSet, AttackPower);
+
+	UPROPERTY(BlueprintReadOnly, Category = "Attribute|Defense")
+	FGameplayAttributeData DefensePower;
+	ATTRIBUTE_ACCESSORS(UVirgoAttributeSet, DefensePower);
 
 };

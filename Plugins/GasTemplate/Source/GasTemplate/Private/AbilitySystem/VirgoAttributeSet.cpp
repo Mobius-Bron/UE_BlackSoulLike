@@ -5,5 +5,8 @@
 
 UVirgoAttributeSet::UVirgoAttributeSet()
 {
-
+	InitMaxHealth(1.0f);
+	InitCurrentHealth(1.0f);
+	InitAttackPower(1.0f);
+	InitDefensePower(1.0f);
 }
