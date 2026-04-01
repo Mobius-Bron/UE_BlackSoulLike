@@ -41,5 +41,7 @@ public:
 	FGameplayTag CurrentEquippedWeaponTag;
 
 protected:
+	TArray<AActor*> OverlappedActors;
+
 	TMap<FGameplayTag, AWeaponBase*> CharacterCarriedWeaponMap;
 };

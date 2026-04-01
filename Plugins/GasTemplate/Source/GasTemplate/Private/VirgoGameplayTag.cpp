@@ -13,6 +13,9 @@ namespace VirgoGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_Unequip, "InputTag.Unequip");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_Attack, "InputTag.Attack");
 
+	/* Shared Tags */
+	UE_DEFINE_GAMEPLAY_TAG(Shared_Event_MeleeHit, "Shared.Event.MeleeHit");
+
 	/* Player Tags */
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Equip, "Player.Ability.Equip");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Unequip, "Player.Ability.Unequip");

@@ -14,6 +14,9 @@ namespace VirgoGameplayTags
 	GASTEMPLATE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_Unequip);
 	GASTEMPLATE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_Attack);
 
+	/* Shared Tags */
+	GASTEMPLATE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Shared_Event_MeleeHit);
+
 	/* Player Tags */
 	GASTEMPLATE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Ability_Equip);
 	GASTEMPLATE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Ability_Unequip);
@@ -27,5 +30,6 @@ namespace VirgoGameplayTags
 
 	/* Enemy Tags */
 	GASTEMPLATE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Enemy_Weapon_Sword);
+
 
 }

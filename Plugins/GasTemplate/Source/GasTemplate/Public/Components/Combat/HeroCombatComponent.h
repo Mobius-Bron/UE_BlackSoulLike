@@ -22,4 +22,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Virgo|Combat")
 	AVirgoHeroWeapon* GetHeroCurrentEquippedWeapon() const;
+
+	virtual void OnHitTargetActor(AActor* TargetActor) override;
+	virtual void OnPulledFromTargetActor(AActor* TargetActor) override;
 };

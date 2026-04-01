@@ -3,7 +3,9 @@
 
 #include "Components/Combat/HeroCombatComponent.h"
 #include "Components/Combat/PawnCombatComponent.h"
+#include "AbilitySystemBlueprintLibrary.h"
 
+#include "VirgoGameplayTag.h"
 #include "Items/Weapons/VirgoHeroWeapon.h"
 
 AVirgoHeroWeapon* UHeroCombatComponent::GetHeroCarriedWeaponByTag(FGameplayTag WeaponTag) const
@@ -18,4 +20,26 @@ AVirgoHeroWeapon* UHeroCombatComponent::GetHeroCarriedWeaponByTag(FGameplayTag W
 AVirgoHeroWeapon* UHeroCombatComponent::GetHeroCurrentEquippedWeapon() const
 {
 	return GetHeroCarriedWeaponByTag(CurrentEquippedWeaponTag);
+}
+
+void UHeroCombatComponent::OnHitTargetActor(AActor* TargetActor)
+{
+	if (OverlappedActors.Contains(TargetActor)) { return; }
+
+	OverlappedActors.AddUnique(TargetActor);
+
+	FGameplayEventData EventData;
+	EventData.Instigator = GetOwingPawn();
+	EventData.Target = TargetActor;
+
+	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(
+		GetOwingPawn(),
+		VirgoGameplayTags::Shared_Event_MeleeHit,
+		EventData
+	);
+}
+
+void UHeroCombatComponent::OnPulledFromTargetActor(AActor* TargetActor)
+{
+
 }

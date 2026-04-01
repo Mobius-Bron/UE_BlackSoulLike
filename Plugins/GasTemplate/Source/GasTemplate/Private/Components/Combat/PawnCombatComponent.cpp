@@ -19,8 +19,8 @@ void UPawnCombatComponent::RegisterSpawnedWeapon(FGameplayTag WeaponTag, AWeapon
 
 	CharacterCarriedWeaponMap.Emplace(WeaponTag, SpwanWeapon);
 
-	SpwanWeapon->OnWeaponHitTarget.Unbind();
-	SpwanWeapon->OnWeaponPulledFromTarget.Unbind();
+	SpwanWeapon->OnWeaponHitTarget.BindUObject(this, &ThisClass::OnHitTargetActor);
+	SpwanWeapon->OnWeaponPulledFromTarget.BindUObject(this, &ThisClass::OnPulledFromTargetActor);
 
 	if (RegisterAsEquippedWeapon)
 	{
@@ -34,8 +34,8 @@ void UPawnCombatComponent::UnregisterAndDestoryWeapon(FGameplayTag WeaponTag)
 	{
 		CharacterCarriedWeaponMap.Remove(WeaponTag);
 
-		WeaponToDestroy->OnWeaponHitTarget.BindUObject(this, &ThisClass::OnHitTargetActor);
-		WeaponToDestroy->OnWeaponPulledFromTarget.BindUObject(this, &ThisClass::OnPulledFromTargetActor);
+		WeaponToDestroy->OnWeaponHitTarget.Unbind();
+		WeaponToDestroy->OnWeaponPulledFromTarget.Unbind();
 
 		if (CurrentEquippedWeaponTag == WeaponTag)
 		{
@@ -83,12 +83,11 @@ void UPawnCombatComponent::ToggleWeaponCollision(bool bShouldEnable, EToggleDama
 		if (bShouldEnable)
 		{
 			WeaponToToggle->GetWeaponCollisionBox()->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
-			UE_LOG(LogTemp, Display, TEXT("%s Set Collision Enabled: QueryOnly"), *WeaponToToggle->GetName());
 		}
 		else
 		{
 			WeaponToToggle->GetWeaponCollisionBox()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-			UE_LOG(LogTemp, Display, TEXT("%s Set Collision Enabled: NoCollision"), *WeaponToToggle->GetName());
+			OverlappedActors.Empty();
 		}
 	}
 }
