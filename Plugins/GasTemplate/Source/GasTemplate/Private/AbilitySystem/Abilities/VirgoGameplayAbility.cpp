@@ -2,6 +2,7 @@
 
 
 #include "AbilitySystem/Abilities/VirgoGameplayAbility.h"
+#include "AbilitySystemBlueprintLibrary.h"
 
 #include "AbilitySystem/VirgoAbilitySystemComponent.h"
 #include "Components/Combat/PawnCombatComponent.h"
@@ -40,4 +41,25 @@ UPawnCombatComponent* UVirgoGameplayAbility::GetPawnCombatComponentFromActorInfo
 UVirgoAbilitySystemComponent* UVirgoGameplayAbility::GetVirgoAbilitySystemComponent() const
 {
 	return Cast<UVirgoAbilitySystemComponent>(CurrentActorInfo->AbilitySystemComponent);
+}
+
+FActiveGameplayEffectHandle UVirgoGameplayAbility::NativeApplyEffectHandleToTarget(AActor* TargetActor, const FGameplayEffectSpecHandle& InSpecHandle)
+{
+	UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor);
+
+	if (!TargetASC && !InSpecHandle.IsValid()) { return FActiveGameplayEffectHandle(); }
+
+	return GetVirgoAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(
+		*InSpecHandle.Data,
+		TargetASC
+	);
+}
+
+FActiveGameplayEffectHandle UVirgoGameplayAbility::BP_ApplyEffectHandleToTarget(AActor* TargetActor, const FGameplayEffectSpecHandle& InSpecHandle, EVirgoSuccessType& SuccessType)
+{
+	FActiveGameplayEffectHandle EffectHandle = NativeApplyEffectHandleToTarget(TargetActor, InSpecHandle);
+
+	SuccessType = EffectHandle.IsValid() ? EVirgoSuccessType::Successful : EVirgoSuccessType::Failed;
+
+	return EffectHandle;
 }

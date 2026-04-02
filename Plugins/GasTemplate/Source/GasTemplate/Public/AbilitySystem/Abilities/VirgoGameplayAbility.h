@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Abilities/GameplayAbility.h"
+#include "DataTypes/VirgoEnumTypes.h"
 #include "VirgoGameplayAbility.generated.h"
 
 class UPawnCombatComponent;
@@ -39,4 +40,9 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Virgo|Ability")
 	UVirgoAbilitySystemComponent* GetVirgoAbilitySystemComponent() const;
+
+	FActiveGameplayEffectHandle NativeApplyEffectHandleToTarget(AActor* TargetActor, const FGameplayEffectSpecHandle& InSpecHandle);
+
+	UFUNCTION(BlueprintCallable, Category = "Virgo|Ability", meta = (DisplayName = "Apply Effect Handle To Target", ExpandEnumAsExecs = "SuccessType"))
+	FActiveGameplayEffectHandle BP_ApplyEffectHandleToTarget(AActor* TargetActor, const FGameplayEffectSpecHandle& InSpecHandle, EVirgoSuccessType& SuccessType);
 };

@@ -17,6 +17,13 @@ enum class EVirgoValidType : uint8
 };
 
 UENUM(BlueprintType)
+enum class EVirgoSuccessType : uint8
+{
+	Successful,
+	Failed
+};
+
+UENUM(BlueprintType)
 enum class EToggleDamageType : uint8
 {
 	CurrentEquippedWeapon,
