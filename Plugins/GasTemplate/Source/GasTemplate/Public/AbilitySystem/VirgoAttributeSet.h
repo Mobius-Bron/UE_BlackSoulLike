@@ -24,6 +24,8 @@ class GASTEMPLATE_API UVirgoAttributeSet : public UAttributeSet
 public:
 	UVirgoAttributeSet();
 
+	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
+
 	UPROPERTY(BlueprintReadOnly, Category = "Attribute|Health")
 	FGameplayAttributeData MaxHealth;
 	ATTRIBUTE_ACCESSORS(UVirgoAttributeSet, MaxHealth);

@@ -15,7 +15,8 @@ struct FVirgoCapture
 	{
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UVirgoAttributeSet, AttackPower, Source, false);
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UVirgoAttributeSet, DefensePower, Target, false);
-		DEFINE_ATTRIBUTE_CAPTUREDEF(UVirgoAttributeSet, DamageTaken, Source, false);
+
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UVirgoAttributeSet, DamageTaken, Target, false);
 	}
 };
 
@@ -29,6 +30,8 @@ UGEEC_DamageTake::UGEEC_DamageTake()
 {
 	RelevantAttributesToCapture.Add(GetVirgoCapture().AttackPowerDef);
 	RelevantAttributesToCapture.Add(GetVirgoCapture().DefensePowerDef);
+
+	RelevantAttributesToCapture.Add(GetVirgoCapture().DamageTakenDef);
 }
 
 void UGEEC_DamageTake::Execute_Implementation(
@@ -50,17 +53,25 @@ void UGEEC_DamageTake::Execute_Implementation(
 	float SourceAttackPower = 0.0f;
 	float TargetDefensePower = 0.0f;
 
-	ExecutionParams.AttemptCalculateCapturedAttributeBonusMagnitude(
+	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(
 		GetVirgoCapture().AttackPowerDef, 
 		EvaluateParameters, 
 		SourceAttackPower
 	);
 
-	ExecutionParams.AttemptCalculateCapturedAttributeBonusMagnitude(
+	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(
 		GetVirgoCapture().DefensePowerDef,
 		EvaluateParameters,
 		TargetDefensePower
 	);
+
+	const FString DebugString = FString::Printf(
+		TEXT("Attack: %f | Defense: %f"),
+		SourceAttackPower,
+		TargetDefensePower
+	);
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, DebugString);
 
 	const float FinalDamageDone = FMath::Max(0.0f, SourceAttackPower - TargetDefensePower);
 
