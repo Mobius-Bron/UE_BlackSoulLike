@@ -47,7 +47,7 @@ FActiveGameplayEffectHandle UVirgoGameplayAbility::NativeApplyEffectHandleToTarg
 {
 	UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor);
 
-	if (!TargetASC && !InSpecHandle.IsValid()) { return FActiveGameplayEffectHandle(); }
+	if (!TargetASC || !InSpecHandle.IsValid()) { return FActiveGameplayEffectHandle(); }
 
 	return GetVirgoAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(
 		*InSpecHandle.Data,
@@ -59,7 +59,7 @@ FActiveGameplayEffectHandle UVirgoGameplayAbility::BP_ApplyEffectHandleToTarget(
 {
 	FActiveGameplayEffectHandle EffectHandle = NativeApplyEffectHandleToTarget(TargetActor, InSpecHandle);
 
-	SuccessType = EffectHandle.IsValid() ? EVirgoSuccessType::Successful : EVirgoSuccessType::Failed;
+	SuccessType = EffectHandle.WasSuccessfullyApplied() ? EVirgoSuccessType::Successful : EVirgoSuccessType::Failed;
 
 	return EffectHandle;
 }

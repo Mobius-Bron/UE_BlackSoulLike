@@ -16,4 +16,11 @@ class GASTEMPLATE_API UGEEC_DamageTake : public UGameplayEffectExecutionCalculat
 	
 public:
 	UGEEC_DamageTake();
+
+	virtual void Execute_Implementation(
+		const FGameplayEffectCustomExecutionParameters& ExecutionParams, 
+		FGameplayEffectCustomExecutionOutput& OutExecutionOutput
+	) const override;
+
+
 };
