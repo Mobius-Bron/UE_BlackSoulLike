@@ -37,6 +37,12 @@ void UHeroCombatComponent::OnHitTargetActor(AActor* TargetActor)
 		VirgoGameplayTags::Shared_Event_MeleeHit,
 		EventData
 	);
+
+	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(
+		GetOwingPawn(),
+		VirgoGameplayTags::Player_Event_HitPause,
+		FGameplayEventData()
+	);
 }
 
 void UHeroCombatComponent::OnPulledFromTargetActor(AActor* TargetActor)
