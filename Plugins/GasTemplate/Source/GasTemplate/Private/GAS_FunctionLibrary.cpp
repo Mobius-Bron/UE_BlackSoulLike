@@ -2,9 +2,11 @@
 
 
 #include "GAS_FunctionLibrary.h"
+#include "AbilitySystemBlueprintLibrary.h"
 
 #include "Components/Combat/PawnCombatComponent.h"
 #include "Interfaces/PawnCombatInterface.h"
+#include "AbilitySystem/VirgoAbilitySystemComponent.h"
 
 UPawnCombatComponent* UGAS_FunctionLibrary::NativeGetCombatComponentFromActor(AActor* InActor)
 {
@@ -16,6 +18,23 @@ UPawnCombatComponent* UGAS_FunctionLibrary::NativeGetCombatComponentFromActor(AA
     }
 
     return nullptr;
+}
+
+UVirgoAbilitySystemComponent* UGAS_FunctionLibrary::NativeGetVirgoASCFromActor(AActor* InActor)
+{
+    check(InActor);
+
+    return CastChecked<UVirgoAbilitySystemComponent>(UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(InActor));
+}
+
+void UGAS_FunctionLibrary::AddGameplayTagToActorIfNone(AActor* InActor, FGameplayTag TagToAdd)
+{
+    UVirgoAbilitySystemComponent* VirgoASC = NativeGetVirgoASCFromActor(InActor);
+
+    if (!VirgoASC->HasMatchingGameplayTag(TagToAdd))
+    {
+        VirgoASC->AddLooseGameplayTag(TagToAdd);
+    }
 }
 
 UPawnCombatComponent* UGAS_FunctionLibrary::BP_GetCombatComponentFromActor(AActor* InActor, EVirgoValidType& ValidType)

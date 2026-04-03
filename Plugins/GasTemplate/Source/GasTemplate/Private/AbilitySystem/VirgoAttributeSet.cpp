@@ -3,6 +3,10 @@
 
 #include "AbilitySystem/VirgoAttributeSet.h"
 #include "GameplayEffectExtension.h"
+#include "AbilitySystemBlueprintLibrary.h"
+
+#include "VirgoGameplayTag.h"
+#include "GAS_FunctionLibrary.h"
 
 UVirgoAttributeSet::UVirgoAttributeSet()
 {
@@ -30,11 +34,16 @@ void UVirgoAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallb
 
 		SetCurrentHealth(NewCurrentHealth);
 
+		UE_LOG(LogTemp, Warning, TEXT("Health: %f"), NewCurrentHealth);
+
 		// 触发通知
 		// 死亡
 		if (NewCurrentHealth == 0.0f)
 		{
-
+			UGAS_FunctionLibrary::AddGameplayTagToActorIfNone(
+				Data.Target.GetAvatarActor(), 
+				VirgoGameplayTags::Shared_Status_Dead
+			);
 		}
 		// 血量变化
 	}
