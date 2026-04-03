@@ -65,14 +65,6 @@ void UGEEC_DamageTake::Execute_Implementation(
 		TargetDefensePower
 	);
 
-	const FString DebugString = FString::Printf(
-		TEXT("Attack: %f | Defense: %f"),
-		SourceAttackPower,
-		TargetDefensePower
-	);
-
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, DebugString);
-
 	const float FinalDamageDone = FMath::Max(0.0f, SourceAttackPower - TargetDefensePower);
 
 	OutExecutionOutput.AddOutputModifier(

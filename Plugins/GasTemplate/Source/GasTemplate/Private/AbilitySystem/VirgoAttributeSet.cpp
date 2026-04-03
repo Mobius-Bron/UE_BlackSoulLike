@@ -30,14 +30,6 @@ void UVirgoAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallb
 
 		SetCurrentHealth(NewCurrentHealth);
 
-		const FString DebugString = FString::Printf(
-			TEXT("Damage: %f | CurrentHealth: %f"),
-			DamageDone,
-			NewCurrentHealth
-		);
-
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, DebugString);
-
 		// ´¥·¢Í¨Öª
 		// ËÀÍö
 		if (NewCurrentHealth == 0.0f)
